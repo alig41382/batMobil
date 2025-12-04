@@ -34,31 +34,34 @@ public class Movement : MonoBehaviour
     /// </summary>
     private void HandleSpeed()
     {
-        if (Input.GetKey(KeyCode.LeftShift))
-        {
-            currentSpeed = boostSpeed;
-        }
-        else
-        {
-            currentSpeed = normalSpeed;
-        }
-
         switch (playerState.GetBatmanState())
         {
-            case BatmanStates.Normal:
-                currentSpeed = normalSpeed;
+            case PlayerState.BatmanStates.Normal:
+                currentSpeed = Input.GetKey(KeyCode.LeftShift) ? boostSpeed : normalSpeed;
+                // currentSpeed = normalSpeed;
                 break;
-            case BatmanStates.Stealth:
+            case PlayerState.BatmanStates.Stealth:
                 currentSpeed = normalSpeed / 2f; // slower in stealth
                 break;
-            case BatmanStates.Alert:
+            case PlayerState.BatmanStates.Alert:
                 currentSpeed = boostSpeed; // faster in alert
                 break;
         }
+        // if (Input.GetKey(KeyCode.LeftShift))
+        // {
+        //     currentSpeed = boostSpeed;
+        // }
+
+        // else
+        // {
+        //     currentSpeed = normalSpeed;
+        // }
     }
 
     /// <summary>
-    /// Movement (W/S) and rotation (A/D) for 2D top-down control.
+    /// Moves and rotates the player based on input.
+    /// W/S -> Forward/backward
+    /// A/D -> Rotate left/right
     /// </summary>
     private void PlayerMovement()
     {
@@ -67,9 +70,15 @@ public class Movement : MonoBehaviour
 
         float rotationInput = Input.GetAxis("Horizontal");
         float rotationAmount = rotationInput * rotationSpeed * Time.deltaTime;
-
+        if (transform.position.y < 0.2)
+        {
+            transform.Translate(0, moveDirection, 0);
+        }
+        else
+        {
+            transform.Translate(0, 0.2f, 0);
+        }
         transform.Rotate(0, 0, -rotationAmount);
-        transform.Translate(0, moveDirection, 0);
         // rb.velocity = moveDirection;
         // rb.rotation -= rotationAmount; //clockwise rotation
     }
