@@ -3,10 +3,10 @@ using UnityEngine;
 public class AlertLights : MonoBehaviour
 {
     [SerializeField]
-    spriteRenderer redLight;
+    SpriteRenderer redLight;
 
     [SerializeField]
-    spriteRenderer blueLight;
+    SpriteRenderer blueLight;
 
     private float flashSpeed = 4f;
     private bool isAlertActive = false;
