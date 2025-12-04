@@ -15,7 +15,7 @@ public class PlayerState : MonoBehaviour
     private BatmanStates currentState = BatmanStates.Normal;
 
     [SerializeField]
-    AlertController alertController;
+    AlertLights AlertLights;
 
     void Start()
     {
@@ -49,9 +49,9 @@ public class PlayerState : MonoBehaviour
         }
 
         if (currentState == BatmanStates.Alert)
-            alertController.SetAlert(true);
+            AlertLights.SetAlert(true);
         else
-            alertController.SetAlert(false);
+            AlertLights.SetAlert(false);
     }
     /// <summary>
     /// Returns the current state of Batman.
