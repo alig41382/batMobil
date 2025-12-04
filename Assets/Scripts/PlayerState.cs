@@ -31,7 +31,7 @@ public class PlayerState : MonoBehaviour
     /// Switch between states based on key input.
     /// C -> Stealth
     /// Space -> Alert
-    /// Otherwise -> Normal
+    /// V -> Normal
     /// </summary>
     private void HandleStateSwitch()
     {
@@ -43,7 +43,7 @@ public class PlayerState : MonoBehaviour
         {
             currentState = BatmanStates.Alert;
         }
-        else if (!Input.GetKey(KeyCode.C) && !Input.GetKey(KeyCode.Space))
+        else if (Input.GetKeyDown(KeyCode.V))
         {
             currentState = BatmanStates.Normal;
         }
@@ -53,6 +53,7 @@ public class PlayerState : MonoBehaviour
         else
             AlertLights.SetAlert(false);
     }
+
     /// <summary>
     /// Returns the current state of Batman.
     /// </summary>

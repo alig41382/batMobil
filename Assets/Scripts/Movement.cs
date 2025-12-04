@@ -37,8 +37,7 @@ public class Movement : MonoBehaviour
         switch (playerState.GetBatmanState())
         {
             case PlayerState.BatmanStates.Normal:
-                currentSpeed = Input.GetKey(KeyCode.LeftShift) ? boostSpeed : normalSpeed;
-                // currentSpeed = normalSpeed;
+                currentSpeed = normalSpeed;
                 break;
             case PlayerState.BatmanStates.Stealth:
                 currentSpeed = normalSpeed / 2f; // slower in stealth
@@ -47,10 +46,10 @@ public class Movement : MonoBehaviour
                 currentSpeed = boostSpeed; // faster in alert
                 break;
         }
-        // if (Input.GetKey(KeyCode.LeftShift))
-        // {
-        //     currentSpeed = boostSpeed;
-        // }
+        if (Input.GetKey(KeyCode.LeftShift))
+        {
+            currentSpeed = boostSpeed;
+        }
 
         // else
         // {
@@ -70,14 +69,8 @@ public class Movement : MonoBehaviour
 
         float rotationInput = Input.GetAxis("Horizontal");
         float rotationAmount = rotationInput * rotationSpeed * Time.deltaTime;
-        if (transform.position.y < 0.2)
-        {
-            transform.Translate(0, moveDirection, 0);
-        }
-        else
-        {
-            transform.Translate(0, 0.2f, 0);
-        }
+       
+        transform.Translate(0, moveDirection, 0);
         transform.Rotate(0, 0, -rotationAmount);
         // rb.velocity = moveDirection;
         // rb.rotation -= rotationAmount; //clockwise rotation
