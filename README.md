@@ -149,4 +149,4 @@ By studying this project, you'll understand:
 
 This is an educational project. Feel free to use it as a learning resource or starting point for your own projects.
 
-                    **Built with Unity** | *A learning project for aspiring game developers*
+**Built with Unity** | *A learning project for aspiring game developers*
