@@ -9,8 +9,8 @@ public class Movement : MonoBehaviour
     [SerializeField]
     float boostSpeed = 10f;
 
-    [SerializeField]
-    float rotationSpeed = 180f;
+    // [SerializeField]
+    // float rotationSpeed = 180f; //it was supposed to be rotation but now i understand its not rotation but another translate
 
     private float currentSpeed;
     private Rigidbody2D rb;
@@ -64,15 +64,25 @@ public class Movement : MonoBehaviour
     /// </summary>
     private void PlayerMovement()
     {
-        float moveInput = Input.GetAxis("Vertical");
-        float moveDirection = moveInput * currentSpeed * Time.deltaTime;
+        float forwardInput = Input.GetAxis("Vertical");
+        float horizontalInput = Input.GetAxis("Horizontal");
 
-        float rotationInput = Input.GetAxis("Horizontal");
-        float rotationAmount = rotationInput * rotationSpeed * Time.deltaTime;
-       
-        transform.Translate(0, moveDirection, 0);
-        transform.Rotate(0, 0, -rotationAmount);
-        // rb.velocity = moveDirection;
-        // rb.rotation -= rotationAmount; //clockwise rotation
+        // float moveInput = Input.GetAxis("Vertical");
+        // float moveDirection = moveInput * currentSpeed * Time.deltaTime;
+        // float rotationInput = Input.GetAxis("Horizontal");
+        // float rotationAmount = rotationInput * currentSpeed * Time.deltaTime;
+
+        // Face left or right
+        if (horizontalInput < 0)
+            transform.localScale = new Vector3(-2, 2, 1);
+        else if (horizontalInput > 0)
+            transform.localScale = new Vector3(2, 2, 1);
+
+        float facing = transform.localScale.x;
+        float moveX = forwardInput * facing * currentSpeed * Time.deltaTime;
+        transform.Translate(moveX, 0, 0);
+
+        // transform.Translate(0, moveDirection, 0);
+        // transform.Rotate(0, 0, -rotationAmount);
     }
 }
