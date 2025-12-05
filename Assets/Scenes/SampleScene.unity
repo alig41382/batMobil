@@ -265,6 +265,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 346b33d8d5ca7ed44a1fe2b9826c3af0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerState
+  batmanSprite: {fileID: 300434683}
   AlertLights: {fileID: 1628828676}
 --- !u!1 &431913181
 GameObject:

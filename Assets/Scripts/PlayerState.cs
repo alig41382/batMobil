@@ -12,6 +12,9 @@ public class PlayerState : MonoBehaviour
         Alert,
     }
 
+    [SerializeField]
+    private SpriteRenderer batmanSprite;
+
     private BatmanStates currentState = BatmanStates.Normal;
 
     [SerializeField]
@@ -52,6 +55,8 @@ public class PlayerState : MonoBehaviour
             AlertLights.SetAlert(true);
         else
             AlertLights.SetAlert(false);
+
+        ApplyVisualState();
     }
 
     /// <summary>
@@ -60,5 +65,23 @@ public class PlayerState : MonoBehaviour
     public BatmanStates GetBatmanState()
     {
         return currentState;
+    }
+
+    private void ApplyVisualState()
+    {
+        if (currentState == BatmanStates.Stealth)
+        {
+            // Set opacity to 0.5
+            Color c = batmanSprite.color;
+            c.a = 0.5f;
+            batmanSprite.color = c;
+        }
+        else
+        {
+            // Reset opacity to 1
+            Color c = batmanSprite.color;
+            c.a = 1f;
+            batmanSprite.color = c;
+        }
     }
 }
