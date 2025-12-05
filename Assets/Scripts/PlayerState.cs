@@ -43,7 +43,7 @@ public class PlayerState : MonoBehaviour
         {
             currentState = BatmanStates.Alert;
         }
-        else if (Input.GetKeyDown(KeyCode.V))
+        else if (Input.GetKeyDown(KeyCode.N))
         {
             currentState = BatmanStates.Normal;
         }
