@@ -8,6 +8,9 @@ public class AlertLights : MonoBehaviour
     [SerializeField]
     SpriteRenderer blueLight;
 
+    [SerializeField]
+    AudioSource alertAudio;
+
     private float flashSpeed = 4f;
     private bool isAlertActive = false;
 
@@ -15,6 +18,8 @@ public class AlertLights : MonoBehaviour
     {
         redLight.enabled = false;
         blueLight.enabled = false;
+        if (alertAudio != null)
+            alertAudio.Stop();
     }
 
     void Update()
@@ -28,11 +33,17 @@ public class AlertLights : MonoBehaviour
     public void SetAlert(bool state)
     {
         isAlertActive = state;
-
-        if (!state)
+        if (state)
+        {
+            if (alertAudio != null && !alertAudio.isPlaying)
+                alertAudio.Play();
+        }
+        else
         {
             redLight.enabled = false;
             blueLight.enabled = false;
+            if (alertAudio != null && alertAudio.isPlaying)
+                alertAudio.Stop();
         }
     }
 
