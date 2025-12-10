@@ -80,6 +80,11 @@ public class Movement : MonoBehaviour
 
         float facing = transform.localScale.x;
         float moveX = forwardInput * facing * currentSpeed * Time.deltaTime;
+        Vector3 futurePositon = new Vector3(transform.position.x + moveX, 0f, 0f);
+        if (Mathf.Abs(futurePositon.x) > 8)
+        {
+            return;
+        }
         transform.Translate(moveX, 0, 0);
 
         // transform.Translate(0, moveDirection, 0);
